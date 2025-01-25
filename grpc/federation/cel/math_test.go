@@ -23,6 +23,242 @@ func TestMathFunctions(t *testing.T) {
 	}{
 		// math package
 		{
+			name: "abs_double",
+			expr: "grpc.federation.math.abs(2.0)",
+			cmp: func(got ref.Val) error {
+				gotV, ok := got.(types.Double).Value().(float64)
+				if !ok {
+					return fmt.Errorf("invalid result type: %T", got)
+				}
+				const (
+					a = 2.0
+				)
+				expected := math.Abs(a)
+				if diff := cmp.Diff(gotV, expected); diff != "" {
+					return fmt.Errorf("(-got, +want)\n%s", diff)
+				}
+				return nil
+			},
+		},
+		{
+			name: "abs_int",
+			expr: "grpc.federation.math.abs(-2)",
+			cmp: func(got ref.Val) error {
+				gotV, ok := got.(types.Double).Value().(float64)
+				if !ok {
+					return fmt.Errorf("invalid result type: %T", got)
+				}
+				const (
+					a = -2
+				)
+				expected := math.Abs(a)
+				if diff := cmp.Diff(gotV, expected); diff != "" {
+					return fmt.Errorf("(-got, +want)\n%s", diff)
+				}
+				return nil
+			},
+		},
+		{
+			name: "acos",
+			expr: "grpc.federation.math.acos(1.0)",
+			cmp: func(got ref.Val) error {
+				gotV, ok := got.(types.Double).Value().(float64)
+				if !ok {
+					return fmt.Errorf("invalid result type: %T", got)
+				}
+				const (
+					a = 1.0
+				)
+				expected := math.Acos(a)
+				if diff := cmp.Diff(gotV, expected); diff != "" {
+					return fmt.Errorf("(-got, +want)\n%s", diff)
+				}
+				return nil
+			},
+		},
+		{
+			name: "acosh",
+			expr: "grpc.federation.math.acosh(1.0)",
+			cmp: func(got ref.Val) error {
+				gotV, ok := got.(types.Double).Value().(float64)
+				if !ok {
+					return fmt.Errorf("invalid result type: %T", got)
+				}
+				const (
+					a = 1.0
+				)
+				expected := math.Acosh(a)
+				if diff := cmp.Diff(gotV, expected); diff != "" {
+					return fmt.Errorf("(-got, +want)\n%s", diff)
+				}
+				return nil
+			},
+		},
+		{
+			name: "asin",
+			expr: "grpc.federation.math.asin(1.0)",
+			cmp: func(got ref.Val) error {
+				gotV, ok := got.(types.Double).Value().(float64)
+				if !ok {
+					return fmt.Errorf("invalid result type: %T", got)
+				}
+				const (
+					a = 1.0
+				)
+				expected := math.Asin(a)
+				if diff := cmp.Diff(gotV, expected); diff != "" {
+					return fmt.Errorf("(-got, +want)\n%s", diff)
+				}
+				return nil
+			},
+		},
+		{
+			name: "asinh",
+			expr: "grpc.federation.math.asinh(0.0)",
+			cmp: func(got ref.Val) error {
+				gotV, ok := got.(types.Double).Value().(float64)
+				if !ok {
+					return fmt.Errorf("invalid result type: %T", got)
+				}
+				const (
+					a = 0.0
+				)
+				expected := math.Asinh(a)
+				if diff := cmp.Diff(gotV, expected); diff != "" {
+					return fmt.Errorf("(-got, +want)\n%s", diff)
+				}
+				return nil
+			},
+		},
+		{
+			name: "atan",
+			expr: "grpc.federation.math.atan(0.0)",
+			cmp: func(got ref.Val) error {
+				gotV, ok := got.(types.Double).Value().(float64)
+				if !ok {
+					return fmt.Errorf("invalid result type: %T", got)
+				}
+				const (
+					a = 0.0
+				)
+				expected := math.Atan(a)
+				if diff := cmp.Diff(gotV, expected); diff != "" {
+					return fmt.Errorf("(-got, +want)\n%s", diff)
+				}
+				return nil
+			},
+		},
+		{
+			name: "atan2",
+			expr: "grpc.federation.math.atan2(0.0, 0.0)",
+			cmp: func(got ref.Val) error {
+				gotV, ok := got.(types.Double).Value().(float64)
+				if !ok {
+					return fmt.Errorf("invalid result type: %T", got)
+				}
+				const (
+					a = 0.0
+					b = 0.0
+				)
+				expected := math.Atan2(a, b)
+				if diff := cmp.Diff(gotV, expected); diff != "" {
+					return fmt.Errorf("(-got, +want)\n%s", diff)
+				}
+				return nil
+			},
+		},
+		{
+			name: "atanh",
+			expr: "grpc.federation.math.atanh(0.0)",
+			cmp: func(got ref.Val) error {
+				gotV, ok := got.(types.Double).Value().(float64)
+				if !ok {
+					return fmt.Errorf("invalid result type: %T", got)
+				}
+				const (
+					a = 0.0
+				)
+				expected := math.Atanh(a)
+				if diff := cmp.Diff(gotV, expected); diff != "" {
+					return fmt.Errorf("(-got, +want)\n%s", diff)
+				}
+				return nil
+			},
+		},
+		{
+			name: "cbrt_double",
+			expr: "grpc.federation.math.cbrt(2.0*2.0*2.0)",
+			cmp: func(got ref.Val) error {
+				gotV, ok := got.(types.Double).Value().(float64)
+				if !ok {
+					return fmt.Errorf("invalid result type: %T", got)
+				}
+				const (
+					a = 2.0
+				)
+				expected := math.Cbrt(a * a * a)
+				if diff := cmp.Diff(gotV, expected); diff != "" {
+					return fmt.Errorf("(-got, +want)\n%s", diff)
+				}
+				return nil
+			},
+		},
+		// {
+		// 	name: "cbrt_int",
+		// 	expr: "grpc.federation.math.sqrt(3*3*3)",
+		// 	cmp: func(got ref.Val) error {
+		// 		gotV, ok := got.(types.Double).Value().(float64)
+		// 		if !ok {
+		// 			return fmt.Errorf("invalid result type: %T", got)
+		// 		}
+		// 		const (
+		// 			a = 3
+		// 		)
+		// 		expected := math.Cbrt(float64(a * a * a))
+		// 		if diff := cmp.Diff(gotV, expected); diff != "" {
+		// 			return fmt.Errorf("(-got, +want)\n%s", diff)
+		// 		}
+		// 		return nil
+		// 	},
+		// },
+		{
+			name: "ceil",
+			expr: "grpc.federation.math.ceil(1.49)",
+			cmp: func(got ref.Val) error {
+				gotV, ok := got.(types.Double).Value().(float64)
+				if !ok {
+					return fmt.Errorf("invalid result type: %T", got)
+				}
+				const (
+					a = 1.49
+				)
+				expected := math.Ceil(a)
+				if diff := cmp.Diff(gotV, expected); diff != "" {
+					return fmt.Errorf("(-got, +want)\n%s", diff)
+				}
+				return nil
+			},
+		},
+		{
+			name: "copysign",
+			expr: "grpc.federation.math.copysign(3.2, -1.0)",
+			cmp: func(got ref.Val) error {
+				gotV, ok := got.(types.Double).Value().(float64)
+				if !ok {
+					return fmt.Errorf("invalid result type: %T", got)
+				}
+				const (
+					f    = 3.2
+					sign = -1.0
+				)
+				expected := math.Copysign(f, sign)
+				if diff := cmp.Diff(gotV, expected); diff != "" {
+					return fmt.Errorf("(-got, +want)\n%s", diff)
+				}
+				return nil
+			},
+		},
+		{
 			name: "sqrt_double",
 			expr: "grpc.federation.math.sqrt(3.0*3.0 + 4.0*4.0)",
 			cmp: func(got ref.Val) error {
